@@ -1,16 +1,23 @@
-# This is a sample Python script.
+import os
+import pathlib
+import shutil
+from pathlib import Path
 
-# Press Shift+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
+# Get the list of all files and directories
+path = 'C://Users//MoAlipour//Desktop//sort train'
+dir_list = os.listdir(path)
 
-
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
-
-
-# Press the green button in the gutter to run the script.
-if __name__ == '__main__':
-    print_hi('PyCharm')
-
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+#get extensions of the file
+for item in dir_list:
+    file_extension = pathlib.Path(item).suffix
+    print("File Extension: ", file_extension)
+    if file_extension :
+        newPath = path  + "//" + file_extension +" files"
+        if not os.path.exists(newPath):
+            os.makedirs(newPath)
+    #move directory to the file
+for item in dir_list:
+    if os.path.isfile(path + "//" + item):
+        source = path + "//" + item
+        destination = path + "//"+ pathlib.Path(item).suffix + " files"
+        dest = shutil.move(source, destination)
